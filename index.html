@@ -6,448 +6,15 @@
     <title>Jose Nolan Iglesia | Portfolio</title>
     <!-- Font Awesome for Social Logos -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* Base Styles & Reset */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            /* Black and dark purple gradient background */
-            background: linear-gradient(135deg, #07000d 0%, #15032b 100%);
-            color: #e2e8f0;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
-
-        /* Prevent scrolling while loading */
-        body.loading {
-            overflow: hidden;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* --- Professional Loader Animation Styles --- */
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #05000a; /* Deepest black for a sleek load */
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-
-        .spinner {
-            width: 45px;
-            height: 45px;
-            border: 3px solid rgba(216, 180, 254, 0.1);
-            border-top: 3px solid #a855f7;
-            border-radius: 50%;
-            animation: spin 1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
-            margin-bottom: 2rem;
-        }
-
-        .loader-logo {
-            color: #e9d5ff;
-            font-size: 1.1rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-
-        .loader-text {
-            color: #64748b;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            animation: pulse 1.5s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; }
-            50% { opacity: 1; }
-        }
-
-        /* Navigation */
-        nav {
-            background-color: rgba(7, 0, 13, 0.85);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid #3b0764;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            padding: 1.5rem 5%;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #d8b4fe;
-            text-shadow: 0 0 10px rgba(216, 180, 254, 0.3);
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            color: #cbd5e1;
-            transition: color 0.3s, text-shadow 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: #c084fc;
-            text-shadow: 0 0 8px rgba(192, 132, 252, 0.5);
-        }
-
-        /* Layout & Sections */
-        section {
-            padding: 7rem 5% 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            overflow-x: hidden;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            color: #f3e8ff;
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            padding-top: 8rem;
-        }
-
-        .hero-text {
-            flex: 1;
-        }
-
-        .hero-text h1 {
-            font-size: 3.5rem;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            line-height: 1.2;
-        }
-
-        .hero-text h3 {
-            font-size: 1.5rem;
-            color: #a855f7;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero-image {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-        }
-
-        .hero-image img {
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 4px solid #581c87;
-            box-shadow: 0 0 30px rgba(88, 28, 135, 0.6);
-            transition: transform 0.5s;
-        }
-
-        .hero-image img:hover {
-            transform: scale(1.05);
-        }
-
-        .btn {
-            display: inline-block;
-            background-color: #7e22ce;
-            color: white;
-            padding: 0.8rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            margin-top: 1rem;
-            box-shadow: 0 4px 15px rgba(126, 34, 206, 0.4);
-        }
-
-        .btn:hover {
-            background-color: #9333ea;
-            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
-            transform: translateY(-2px);
-        }
-
-        /* About & Skills */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
-            justify-content: center;
-        }
-
-        .skill-tag {
-            background-color: #2e1065;
-            color: #e9d5ff;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            font-weight: 500;
-            border: 1px solid #581c87;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .skill-tag:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
-            border-color: #9333ea;
-        }
-
-        /* Timeline / Journey Section */
-        .timeline {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 2rem 0;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 50px;
-            width: 4px;
-            background: #581c87;
-            border-radius: 2px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 3rem;
-            padding-left: 100px;
-            padding-right: 20px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: 41px;
-            top: 20px;
-            width: 22px;
-            height: 22px;
-            background: #d8b4fe;
-            border: 4px solid #3b0764;
-            border-radius: 50%;
-            z-index: 1;
-            box-shadow: 0 0 10px rgba(216, 180, 254, 0.5);
-        }
-
-        .timeline-content {
-            background: rgba(26, 11, 46, 0.6);
-            backdrop-filter: blur(5px);
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid #3b0764;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
-        }
-
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.4);
-            border-color: #7e22ce;
-        }
-
-        .timeline-header h3 {
-            color: #d8b4fe;
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .timeline-header span {
-            color: #a855f7;
-            font-size: 0.9rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .timeline-body p {
-            color: #cbd5e1;
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        /* Journey Images */
-        .timeline-image-container {
-            width: 100%;
-            border-radius: 0.5rem;
-            overflow: hidden;
-            border: 1px solid #581c87;
-            background-color: #110425;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .timeline-image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: contain;
-            max-height: 400px;
-            transition: transform 0.5s ease;
-        }
-
-        .timeline-image-container img:hover {
-            transform: scale(1.03);
-        }
-
-        /* Projects Container - Mobile Responsive Grid */
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .card {
-            background: rgba(26, 11, 46, 0.6);
-            backdrop-filter: blur(5px);
-            padding: 2rem;
-            border-radius: 1rem;
-            border: 1px solid #3b0764;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.4);
-            border-color: #7e22ce;
-        }
-
-        .card h3 {
-            color: #d8b4fe;
-            margin-bottom: 0.5rem;
-        }
-
-        .card p {
-            margin-bottom: 1rem;
-            font-size: 0.95rem;
-            color: #cbd5e1;
-        }
-
-        /* Social Icons Section */
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-top: 2rem;
-        }
-
-        .social-icon {
-            font-size: 2.5rem;
-            color: #d8b4fe;
-            transition: all 0.3s ease;
-            filter: drop-shadow(0 0 5px rgba(216, 180, 254, 0.2));
-        }
-
-        .social-icon:hover {
-            color: #ffffff;
-            transform: scale(1.2);
-            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.8));
-        }
-
-        /* Footer */
-        footer {
-            background-color: #05000a;
-            border-top: 1px solid #2e1065;
-            color: #94a3b8;
-            text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
-        }
-
-        /* --- Animation Classes --- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .delay-1 { transition-delay: 0.2s; }
-        .delay-2 { transition-delay: 0.4s; }
-        .delay-3 { transition-delay: 0.6s; }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero {
-                flex-direction: column-reverse;
-                text-align: center;
-                padding-top: 6rem;
-            }
-            .nav-links {
-                display: none;
-            }
-            .hero-text h1 {
-                font-size: 2.5rem;
-            }
-            .timeline::before {
-                left: 20px;
-            }
-            .timeline-item {
-                padding-left: 50px;
-                padding-right: 0;
-            }
-            .timeline-item::before {
-                left: 11px;
-            }
-        }
-    </style>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="loading">
 
     <!-- Loading Screen -->
     <div id="loader">
         <div class="spinner"></div>
-        <div class="loader-logo">JNG.Iglesia</div>
+        <div class="loader-logo">JN.Iglesia</div>
         <div class="loader-text">Initializing Workspace...</div>
     </div>
 
@@ -513,7 +80,7 @@
                         <img src="images/week1.jpg" alt="Week 1 Progress">
                     </div>
                     <div class="timeline-body">
-                        <p>Collaborated with the ICT team to set up our development environments and establish the foundational UI/UX. During this week, we successfully engineered the initial MySQL database schema and developed the global navigation system to ensure seamless UI integration.</p>
+                        <p>Collaborated with the ICT team to set up our development environments and establish the foundational UI/UX. Alongside engineering the initial MySQL database schema for the Public Advisory module, I also resolved GitHub integration errors caused by PHP versioning conflicts and built the global header/footer navigation using Laravel[cite: 1].</p>
                     </div>
                 </div>
             </div>
@@ -529,7 +96,7 @@
                         <img src="images/week2.jpg" alt="Week 2 Progress">
                     </div>
                     <div class="timeline-body">
-                        <p>Officially deployed the initial system framework with the division staff. Transitioned to a functional web app by implementing full CRUD capabilities for official memorandums and initiating backend logic for secure, role-based user access.</p>
+                        <p>Officially deployed the initial system framework with the division staff. Beyond transitioning to a functional web app with full CRUD capabilities for memorandums, I migrated the static dashboard carousel to a dynamic component and initiated the backend logic for secure, role-based user access to address identified security vulnerabilities[cite: 2].</p>
                     </div>
                 </div>
             </div>
@@ -545,7 +112,7 @@
                         <img src="images/week3.jpg" alt="Week 3 Progress">
                     </div>
                     <div class="timeline-body">
-                        <p>Developed the dynamic Procurement page to display bid opportunities programmatically. Additionally, engineered complete CRUD functionality for the Learning Materials section and built a dynamic layout for the K-12 Basic Curriculum Guide.</p>
+                        <p>Developed the dynamic Procurement page to display bid opportunities programmatically. I also engineered complete CRUD functionality for Learning Materials, created a dynamic FAQ interface, and built custom Laravel Blade components to handle complex nested data structures for the K-12 Curriculum Guide[cite: 3].</p>
                     </div>
                 </div>
             </div>
@@ -561,7 +128,7 @@
                         <img src="images/week4.jpg" alt="Week 4 Progress">
                     </div>
                     <div class="timeline-body">
-                        <p>Completed the "About" module, successfully mapping and rendering the department's complex Organizational Structure. Integrated CKEditor and a global configuration module, giving super-admins the power to format pages directly from the dashboard.</p>
+                        <p>Completed the "About" module, successfully mapping and rendering the department's complex Organizational Structure. While integrating CKEditor to empower administrators with direct page formatting, I also applied strict input sanitization on the Laravel backend to securely handle complex HTML and prevent cross-site scripting (XSS) vulnerabilities[cite: 4].</p>
                     </div>
                 </div>
             </div>
@@ -577,7 +144,7 @@
                         <img src="images/week5.jpg" alt="Week 5 Progress">
                     </div>
                     <div class="timeline-body">
-                        <p>Engineered a page deactivation feature that safely triggers a custom 'We'll Be Right Back!' maintenance screen for lifecycle management. We also resolved complex responsive UI bugs related to scaling external media embeds like Facebook videos.</p>
+                        <p>Engineered a page deactivation feature that safely triggers a custom maintenance screen by managing active/inactive database state flags. We also resolved complex responsive UI bugs, applying CSS wrappers to maintain layout constraints when handling unpredictable external media embeds like Facebook videos[cite: 5].</p>
                     </div>
                 </div>
             </div>
@@ -593,7 +160,7 @@
                         <img src="images/week6.jpg" alt="Week 6 Progress">
                     </div>
                     <div class="timeline-body">
-                        <p>Standardized the UI/UX design of all administrative modal pop-ups, such as the "Edit Record" interface. Implemented global breadcrumbs to improve site navigability and restructured backend table layouts to ensure uniform consistency.</p>
+                        <p>Standardized the UI/UX design of all administrative modal pop-ups, such as the "Edit Record" interface. I implemented global breadcrumbs for better navigability, carefully refactoring existing code to unify table layouts and adjust global padding constraints without disrupting underlying backend functionalities[cite: 6].</p>
                     </div>
                 </div>
             </div>
@@ -609,7 +176,7 @@
                         <img src="images/week7.jpg" alt="Week 7 Progress">
                     </div>
                     <div class="timeline-body">
-                        <p>Strengthened data integrity by programming strict duplication logic across file upload modules to prevent redundant data entry, such as duplicate carousel images. Led the integration of a custom Role-Based Access Control (RBAC) mechanism and a password recovery pipeline.</p>
+                        <p>Strengthened data integrity by programming strict duplication logic across file upload modules like the Home Carousel Banners. I also led the integration of a custom Role-Based Access Control (RBAC) mechanism, coding custom middleware to enforce strict viewing and editing permissions across the admin panel[cite: 7].</p>
                     </div>
                 </div>
             </div>
@@ -625,7 +192,7 @@
                         <img src="images/week8.jpg" alt="Week 8 Progress">
                     </div>
                     <div class="timeline-body">
-                        <p>Rewrote the dynamic pages module using recursive database structures to support deeply nested, multi-level dropdown navigation menus. Engineered multi-layered filtering for student directories and unified upload workflows to eliminate repetitive data entry.</p>
+                        <p>Rewrote the dynamic pages module using recursive database structures to support deeply nested dropdown navigation menus. I also engineered multi-layered filtering for student directories and unified the public and private upload workflows, applying the DRY (Don't Repeat Yourself) principle to optimize backend Laravel queries[cite: 8].</p>
                     </div>
                 </div>
             </div>
@@ -641,7 +208,7 @@
                         <img src="images/week9.jpg" alt="Week 9 Progress">
                     </div>
                     <div class="timeline-body">
-                        <p>Collaborated across development teams to securely fetch and integrate an external API using Postman, successfully rendering a dynamic interactive map of the region. We also finalized the Procurement data module with advanced date filtering.</p>
+                        <p>Collaborated across development teams to securely fetch and integrate an external API using Postman, successfully rendering a dynamic interactive map of the region. Furthermore, I finalized the Procurement data module by implementing both advanced date filtering and free-text search capabilities[cite: 9].</p>
                     </div>
                 </div>
             </div>
@@ -657,7 +224,7 @@
                         <img src="images/week10.jpg" alt="Week 10 Progress">
                     </div>
                     <div class="timeline-body">
-                        <p>Presented the comprehensive, finalized system to the ICT supervisor and team for evaluation in the conference room. Addressed user acceptance feedback, stabilized the home banner, and finalized the admin login interface for official deployment.</p>
+                        <p>Presented the comprehensive, finalized system to the ICT supervisor and team for evaluation. I addressed user acceptance feedback by stabilizing the home banner, redesigning the admin login interface, and standardizing duplication check validation requests across almost all upload forms to prevent long-term server bloat[cite: 10].</p>
                     </div>
                 </div>
             </div>
@@ -705,6 +272,9 @@
             <a href="https://www.linkedin.com/in/jose-nolan-iglesia-2495833a7" target="_blank" title="LinkedIn">
                 <i class="fa-brands fa-linkedin social-icon"></i>
             </a>
+            <a href="https://discord.com/" target="_blank" title="Discord">
+                <i class="fa-brands fa-discord social-icon"></i>
+            </a>
         </div>
 
         <a href="mailto:jngiglesia123@gmail.com" class="btn fade-in delay-3" style="margin-top: 2rem;">Send an Email</a>
@@ -712,64 +282,10 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2026 Jose NolanIglesia. All rights reserved.</p>
+        <p>&copy; 2026 Jose Nolan Iglesia. All rights reserved.</p>
     </footer>
 
-    <!-- Interactivity, Animations & Loader Script -->
-    <script>
-        // Handle Loader Removal on Window Load
-        window.addEventListener('load', () => {
-            const loader = document.getElementById('loader');
-            const body = document.body;
-            
-            // Adding a small delay (e.g., 600ms) to ensure everything renders smoothly
-            setTimeout(() => {
-                loader.style.opacity = '0';
-                loader.style.visibility = 'hidden';
-                body.classList.remove('loading');
-            }, 600);
-        });
-
-        // Smooth Scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-
-        // Intersection Observer for Fade-In Animations
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.15
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    // Stop observing once animated
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in').forEach(element => {
-            observer.observe(element);
-        });
-        
-        // Trigger animations for elements immediately in view right after load
-        setTimeout(() => {
-            document.querySelectorAll('.fade-in').forEach(element => {
-                const rect = element.getBoundingClientRect();
-                if(rect.top < window.innerHeight) {
-                    element.classList.add('visible');
-                }
-            });
-        }, 800); // Trigger slightly after loader fades
-    </script>
+    <!-- Link to external JS -->
+    <script src="script.js"></script>
 </body>
 </html>
