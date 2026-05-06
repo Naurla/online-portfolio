@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jose Nolan Gamaliel B. Iglesia | Portfolio</title>
+    <!-- Font Awesome for Social Logos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            /* Black and dark purple gradient background */
+            background: linear-gradient(135deg, #07000d 0%, #15032b 100%);
+            color: #e2e8f0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Prevent scrolling while loading */
+        body.loading {
+            overflow: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Professional Loader Animation Styles --- */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #05000a; /* Deepest black for a sleek load */
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .spinner {
+            width: 45px;
+            height: 45px;
+            border: 3px solid rgba(216, 180, 254, 0.1);
+            border-top: 3px solid #a855f7;
+            border-radius: 50%;
+            animation: spin 1s cubic-bezier(0.55, 0.15, 0.45, 0.85) infinite;
+            margin-bottom: 2rem;
+        }
+
+        .loader-logo {
+            color: #e9d5ff;
+            font-size: 1.1rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .loader-text {
+            color: #64748b;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 1; }
+        }
+
+        /* Navigation */
+        nav {
+            background-color: rgba(7, 0, 13, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #3b0764;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            padding: 1.5rem 5%;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #d8b4fe;
+            text-shadow: 0 0 10px rgba(216, 180, 254, 0.3);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: #cbd5e1;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #c084fc;
+            text-shadow: 0 0 8px rgba(192, 132, 252, 0.5);
+        }
+
+        /* Layout & Sections */
+        section {
+            padding: 7rem 5% 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow-x: hidden;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: #f3e8ff;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            padding-top: 8rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text h3 {
+            font-size: 1.5rem;
+            color: #a855f7;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #581c87;
+            box-shadow: 0 0 30px rgba(88, 28, 135, 0.6);
+            transition: transform 0.5s;
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #7e22ce;
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+            box-shadow: 0 4px 15px rgba(126, 34, 206, 0.4);
+        }
+
+        .btn:hover {
+            background-color: #9333ea;
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.6);
+            transform: translateY(-2px);
+        }
+
+        /* About & Skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .skill-tag {
+            background-color: #2e1065;
+            color: #e9d5ff;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-weight: 500;
+            border: 1px solid #581c87;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-tag:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(168, 85, 247, 0.4);
+            border-color: #9333ea;
+        }
+
+        /* Timeline / Journey Section */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50px;
+            width: 4px;
+            background: #581c87;
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            padding-left: 100px;
+            padding-right: 20px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 41px;
+            top: 20px;
+            width: 22px;
+            height: 22px;
+            background: #d8b4fe;
+            border: 4px solid #3b0764;
+            border-radius: 50%;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(216, 180, 254, 0.5);
+        }
+
+        .timeline-content {
+            background: rgba(26, 11, 46, 0.6);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #3b0764;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.4);
+            border-color: #7e22ce;
+        }
+
+        .timeline-header h3 {
+            color: #d8b4fe;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-header span {
+            color: #a855f7;
+            font-size: 0.9rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .timeline-body p {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Journey Images */
+        .timeline-image-container {
+            width: 100%;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            border: 1px solid #581c87;
+            background-color: #110425;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .timeline-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            max-height: 400px;
+            transition: transform 0.5s ease;
+        }
+
+        .timeline-image-container img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Projects Container - Mobile Responsive Grid */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(26, 11, 46, 0.6);
+            backdrop-filter: blur(5px);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 1px solid #3b0764;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(107, 33, 168, 0.4);
+            border-color: #7e22ce;
+        }
+
+        .card h3 {
+            color: #d8b4fe;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+            color: #cbd5e1;
+        }
+
+        /* Social Icons Section */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            font-size: 2.5rem;
+            color: #d8b4fe;
+            transition: all 0.3s ease;
+            filter: drop-shadow(0 0 5px rgba(216, 180, 254, 0.2));
+        }
+
+        .social-icon:hover {
+            color: #ffffff;
+            transform: scale(1.2);
+            filter: drop-shadow(0 0 15px rgba(168, 85, 247, 0.8));
+        }
+
+        /* Footer */
+        footer {
+            background-color: #05000a;
+            border-top: 1px solid #2e1065;
+            color: #94a3b8;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* --- Animation Classes --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.2s; }
+        .delay-2 { transition-delay: 0.4s; }
+        .delay-3 { transition-delay: 0.6s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 6rem;
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+            .timeline::before {
+                left: 20px;
+            }
+            .timeline-item {
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            .timeline-item::before {
+                left: 11px;
+            }
+        }
+    </style>
+</head>
+<body class="loading">
+
+    <!-- Loading Screen -->
+    <div id="loader">
+        <div class="spinner"></div>
+        <div class="loader-logo">JNG.Iglesia</div>
+        <div class="loader-text">Initializing Workspace...</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">MyPortfolio</div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#journey">Internship Journey</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-text fade-in">
+            <h1>Hi, I'm Jose Nolan Gamaliel B. Iglesia</h1>
+            <h3 class="fade-in delay-1">Student Developer | BSCS Student | Western Mindanao State University</h3>
+            <p class="fade-in delay-2">I am a passionate software developer based in the Philippines, specializing in creating robust and dynamic web systems.</p>
+            <a href="#journey" class="btn fade-in delay-3">View My Journey</a>
+        </div>
+        <div class="hero-image fade-in">
+            <img src="images/profile.jpeg" alt="Jose Nolan Gamaliel B. Iglesia">
+        </div>
+    </section>
+
+    <!-- About & Skills -->
+    <section id="about">
+        <h2 class="fade-in">About Me</h2>
+        <p class="fade-in delay-1" style="text-align: center; max-width: 800px; margin: 0 auto;">
+            Currently pursuing my Bachelor of Science in Computer Science (BSCS), I bridge the gap between complex backend architectures and intuitive frontend user experiences. I focus on building scalable solutions that solve real-world problems through efficient digital tracking and management systems.
+        </p>
+        
+        <div class="fade-in delay-2" style="max-width: 800px; margin: 3rem auto 0; text-align: center;">
+            <h3 style="margin-bottom: 1.5rem; color: #d8b4fe;">Core Technologies</h3>
+            <div class="skills-container">
+                <span class="skill-tag">Laravel</span>
+                <span class="skill-tag">PHP</span>
+                <span class="skill-tag">Tailwind CSS</span>
+                <span class="skill-tag">MySQL</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Internship Journey Timeline -->
+    <section id="journey">
+        <h2 class="fade-in">My DepEd Internship Journey</h2>
+        <p class="fade-in delay-1" style="text-align: center; margin-bottom: 3rem; color: #cbd5e1; max-width: 700px; margin-left: auto; margin-right: auto;">
+            A 10-week progression architecting and deploying a highly secure, dynamic web-based administrative system for the Department of Education - Division of Zamboanga City (ICT Unit).
+        </p>
+
+        <div class="timeline">
+            
+            <!-- Week 1 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span>Week 1</span>
+                        <h3>Team Onboarding & Database Architecture</h3>
+                    </div>
+                    <div class="timeline-image-container">
+                        <img src="images/week1.jpg" alt="Week 1 Progress">
+                    </div>
+                    <div class="timeline-body">
+                        <p>Collaborated with the ICT team to set up our development environments and establish the foundational UI/UX. During this week, we successfully engineered the initial MySQL database schema and developed the global navigation system to ensure seamless UI integration.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 2 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span>Week 2</span>
+                        <h3>Project Deployment & User Management</h3>
+                    </div>
+                    <div class="timeline-image-container">
+                        <img src="images/week2.jpg" alt="Week 2 Progress">
+                    </div>
+                    <div class="timeline-body">
+                        <p>Officially deployed the initial system framework with the division staff. Transitioned to a functional web app by implementing full CRUD capabilities for official memorandums and initiating backend logic for secure, role-based user access.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 3 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span>Week 3</span>
+                        <h3>Procurement Module & Curriculum Logic</h3>
+                    </div>
+                    <div class="timeline-image-container">
+                        <img src="images/week3.jpg" alt="Week 3 Progress">
+                    </div>
+                    <div class="timeline-body">
+                        <p>Developed the dynamic Procurement page to display bid opportunities programmatically. Additionally, engineered complete CRUD functionality for the Learning Materials section and built a dynamic layout for the K-12 Basic Curriculum Guide.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 4 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span>Week 4</span>
+                        <h3>Organizational Structure & Admin Controls</h3>
+                    </div>
+                    <div class="timeline-image-container">
+                        <img src="images/week4.jpg" alt="Week 4 Progress">
+                    </div>
+                    <div class="timeline-body">
+                        <p>Completed the "About" module, successfully mapping and rendering the department's complex Organizational Structure. Integrated CKEditor and a global configuration module, giving super-admins the power to format pages directly from the dashboard.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 5 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span>Week 5</span>
+                        <h3>Maintenance Modes & Layout Constraints</h3>
+                    </div>
+                    <div class="timeline-image-container">
+                        <img src="images/week5.jpg" alt="Week 5 Progress">
+                    </div>
+                    <div class="timeline-body">
+                        <p>Engineered a page deactivation feature that safely triggers a custom 'We'll Be Right Back!' maintenance screen for lifecycle management. We also resolved complex responsive UI bugs related to scaling external media embeds like Facebook videos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 6 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span>Week 6</span>
+                        <h3>Modal Standardization & Breadcrumbs</h3>
+                    </div>
+                    <div class="timeline-image-container">
+                        <img src="images/week6.jpg" alt="Week 6 Progress">
+                    </div>
+                    <div class="timeline-body">
+                        <p>Standardized the UI/UX design of all administrative modal pop-ups, such as the "Edit Record" interface. Implemented global breadcrumbs to improve site navigability and restructured backend table layouts to ensure uniform consistency.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 7 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span>Week 7</span>
+                        <h3>Data Validation & Advanced Security</h3>
+                    </div>
+                    <div class="timeline-image-container">
+                        <img src="images/week7.jpg" alt="Week 7 Progress">
+                    </div>
+                    <div class="timeline-body">
+                        <p>Strengthened data integrity by programming strict duplication logic across file upload modules to prevent redundant data entry, such as duplicate carousel images. Led the integration of a custom Role-Based Access Control (RBAC) mechanism and a password recovery pipeline.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 8 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span>Week 8</span>
+                        <h3>Nested Hierarchies & Data Filtering</h3>
+                    </div>
+                    <div class="timeline-image-container">
+                        <img src="images/week8.jpg" alt="Week 8 Progress">
+                    </div>
+                    <div class="timeline-body">
+                        <p>Rewrote the dynamic pages module using recursive database structures to support deeply nested, multi-level dropdown navigation menus. Engineered multi-layered filtering for student directories and unified upload workflows to eliminate repetitive data entry.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 9 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span>Week 9</span>
+                        <h3>Interactive Map API Integration</h3>
+                    </div>
+                    <div class="timeline-image-container">
+                        <img src="images/week9.jpg" alt="Week 9 Progress">
+                    </div>
+                    <div class="timeline-body">
+                        <p>Collaborated across development teams to securely fetch and integrate an external API using Postman, successfully rendering a dynamic interactive map of the region. We also finalized the Procurement data module with advanced date filtering.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Week 10 -->
+            <div class="timeline-item fade-in">
+                <div class="timeline-content">
+                    <div class="timeline-header">
+                        <span>Week 10</span>
+                        <h3>Final Presentation & System Refinement</h3>
+                    </div>
+                    <div class="timeline-image-container">
+                        <img src="images/week10.jpg" alt="Week 10 Progress">
+                    </div>
+                    <div class="timeline-body">
+                        <p>Presented the comprehensive, finalized system to the ICT supervisor and team for evaluation in the conference room. Addressed user acceptance feedback, stabilized the home banner, and finalized the admin login interface for official deployment.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+        <h2 class="fade-in">Featured Projects</h2>
+        <div class="grid-container" style="max-width: 1000px; margin: 0 auto;">
+            
+            <div class="card fade-in delay-1">
+                <h3>DepEd Zamboanga City Web System</h3>
+                <p>A comprehensive public service and administrative platform built during my internship. Features include dynamic page hierarchies, CKEditor integration for super-admins, soft-delete functionality, and seamless responsive design constraints for handling external media safely.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="skill-tag" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Laravel</span>
+                    <span class="skill-tag" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">PHP</span>
+                    <span class="skill-tag" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">MySQL</span>
+                    <span class="skill-tag" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Tailwind CSS</span>
+                </div>
+            </div>
+
+            <div class="card fade-in delay-2">
+                <h3>Apparatus Borrowing System</h3>
+                <p>A structured digital tracking system designed to manage and monitor the checkout and return of institutional hardware and apparatus efficiently.</p>
+                <div style="margin-top: 1rem;">
+                    <span class="skill-tag" style="font-size: 0.75rem; padding: 0.3rem 0.8rem;">Full-Stack Development</span>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" style="text-align: center; margin-bottom: 2rem;">
+        <h2 class="fade-in">Let's Connect</h2>
+        <p class="fade-in delay-1" style="max-width: 600px; margin: 0 auto 1rem;">I am always open to discussing new projects, creative ideas, or opportunities to collaborate.</p>
+        
+        <!-- Interactive Social Links -->
+        <div class="social-links fade-in delay-2">
+            <a href="https://github.com/Naurla" target="_blank" title="GitHub">
+                <i class="fa-brands fa-github social-icon"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/jose-nolan-iglesia-2495833a7" target="_blank" title="LinkedIn">
+                <i class="fa-brands fa-linkedin social-icon"></i>
+            </a>
+            <a href="https://discord.com/" target="_blank" title="Discord">
+                <i class="fa-brands fa-discord social-icon"></i>
+            </a>
+        </div>
+
+        <a href="mailto:jngiglesia123@gmail.com" class="btn fade-in delay-3" style="margin-top: 2rem;">Send an Email</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Jose Nolan Gamaliel B. Iglesia. All rights reserved.</p>
+    </footer>
+
+    <!-- Interactivity, Animations & Loader Script -->
+    <script>
+        // Handle Loader Removal on Window Load
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            const body = document.body;
+            
+            // Adding a small delay (e.g., 600ms) to ensure everything renders smoothly
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+                body.classList.remove('loading');
+            }, 600);
+        });
+
+        // Smooth Scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Intersection Observer for Fade-In Animations
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Stop observing once animated
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Trigger animations for elements immediately in view right after load
+        setTimeout(() => {
+            document.querySelectorAll('.fade-in').forEach(element => {
+                const rect = element.getBoundingClientRect();
+                if(rect.top < window.innerHeight) {
+                    element.classList.add('visible');
+                }
+            });
+        }, 800); // Trigger slightly after loader fades
+    </script>
+</body>
+</html>
