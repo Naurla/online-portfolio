@@ -7,14 +7,12 @@
 }
 
 body {
-    /* Black and dark purple gradient background */
     background: linear-gradient(135deg, #07000d 0%, #15032b 100%);
     color: #e2e8f0;
     line-height: 1.6;
     min-height: 100vh;
 }
 
-/* Prevent scrolling while loading */
 body.loading {
     overflow: hidden;
 }
@@ -24,14 +22,14 @@ a {
     color: inherit;
 }
 
-/* --- Professional Loader Animation Styles --- */
+/* --- Loader Animation Styles --- */
 #loader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #05000a; /* Deepest black for a sleek load */
+    background: #05000a; 
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -114,6 +112,20 @@ nav {
 .nav-links a:hover {
     color: #c084fc;
     text-shadow: 0 0 8px rgba(192, 132, 252, 0.5);
+}
+
+/* Hamburger Icon */
+.hamburger {
+    display: none;
+    font-size: 1.8rem;
+    color: #d8b4fe;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    z-index: 1001; /* Ensure it stays above the menu */
+}
+
+.hamburger:hover {
+    color: #c084fc;
 }
 
 /* Layout & Sections */
@@ -414,9 +426,6 @@ footer {
         text-align: center;
         padding-top: 6rem;
     }
-    .nav-links {
-        display: none;
-    }
     .hero-text h1 {
         font-size: 2.5rem;
     }
@@ -429,5 +438,32 @@ footer {
     }
     .timeline-item::before {
         left: 11px;
+    }
+
+    /* Mobile Menu Implementation */
+    .hamburger {
+        display: block; /* Show hamburger on mobile */
+    }
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(7, 0, 13, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        gap: 2rem;
+        /* Slide menu out of view by default */
+        transform: translateY(-150%);
+        opacity: 0;
+        transition: transform 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        border-bottom: 1px solid #3b0764;
+    }
+    .nav-links.active {
+        /* Slide menu into view when active class is applied */
+        transform: translateY(0);
+        opacity: 1;
     }
 }

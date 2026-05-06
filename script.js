@@ -11,6 +11,36 @@ window.addEventListener('load', () => {
     }, 600);
 });
 
+// Hamburger Menu Logic
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+const navItems = document.querySelectorAll('.nav-links a');
+
+hamburger.addEventListener('click', () => {
+    // Toggle menu visibility
+    navLinks.classList.toggle('active');
+    
+    // Toggle the FontAwesome icon between Bars and X
+    const icon = hamburger.querySelector('i');
+    if(navLinks.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+    } else {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+    }
+});
+
+// Close mobile menu when a navigation link is clicked
+navItems.forEach(item => {
+    item.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        const icon = hamburger.querySelector('i');
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+    });
+});
+
 // Smooth Scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
